@@ -1,0 +1,60 @@
+<html>
+<style>
+    input {
+        vertical-align: middle;
+    }
+    
+    .radio {
+        font-family: verdana;
+    }
+</style>
+<h1 style="font-family:verdana;">{% block title %} Predict Airbnb Occupancy Rate {% endblock %}</h1>
+<script language="javascript">
+    function clearRads() {
+        var radList = document.getElementsByTagName('input');
+        console.log("aaa", radList)
+        for (var i = 0; i < radList.length; i++) {
+            if (radList[i].checked) radList[i].checked = false;
+        }
+    }
+</script>
+
+<body>
+    <form action="http://localhost:9999/results" method="POST">
+	<p style="font-family:verdana;">Enter zipcode for listing
+            <b>(Range 78701 - 78759)</b> <br>
+            <input type="number" min="78701" max="78759" name="zipcode" />
+        </p>
+	<p style="font-family:verdana;">Enter Room Type
+            <select name="room_type" id="room_type">
+            <option value="room_type_hotel_room">hotel</option>
+            <option value="room_type_private_room">private room</option>
+            <option value="room_type_entire_home_apt">home apartment</option>
+            <option value="room_type_shared_room">shared room</option>
+            </select>
+            </input>
+        </p>        
+	<div>
+        <p style="font-family:verdana;"><b>Select Amenities</b><br>
+                <input type="radio" name="freeparking">Free Parking</input>
+                <input type="radio" name="paidparking">Paid Parking</input>
+                <input type="radio" name="longtermstay"> Longterm Stay</input>
+                <input type="radio" name="kitchen">Kitchen</input>
+                <input type="radio" name="pool">Pool</input>
+                <input type="radio" name="gym">Gym</input>
+                <input type="radio" name="workspace">Workspace</input>
+                <input type="button" onclick="clearRads();" value="Clear" />
+        </p>
+        </div>
+        
+        <p style="font-family:verdana;">Enter number of bedrooms <input type="number" min="1" max="8" name="bedrooms" /></p>
+        <p style="font-family:verdana;">Enter number of beds <input type="number" min="1" max="16" name="beds" /></p>
+        <p style="font-family:verdana;">Enter minimum number of nights <input type="text" name="minimum_nights" /></p>
+        <p style="font-family:verdana;">Enter maximum number of nights <input type="text" name="maximum_nights" /></p>
+        
+	<p style="font-family:verdana;">Enter price <input type="text" name="price" /></p>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
